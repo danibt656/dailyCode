@@ -1,4 +1,7 @@
 /**
+ *  == PROBLEM 01 ==
+ *  27 / july / 2021
+ *
  * Given a list of numbers and a number k, return whether any 
  * two numbers from the list add up to k.
  */
@@ -7,7 +10,7 @@
 const arr = [0, 1, 2, 3, 5];
 const k = 7;
 
-const findPair = (arr, k) => {
+const solve = (arr, k) => {
   let dict = {};
   for (let i=0; i < arr.length; i++) {
     let searched = k - arr[i];
@@ -20,6 +23,6 @@ const findPair = (arr, k) => {
   return undefined;
 };
 
-console.log("Given array: "+arr)
-console.log("K: "+k)
-console.log(findPair(arr, k));
+console.log("Given array: "+arr);
+console.log("K: "+k);
+console.log(solve(arr, k));
