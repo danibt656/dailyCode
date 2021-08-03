@@ -10,17 +10,44 @@ class Node:
         self.left = left
         self.right = right
 
+class Codec:
+    def serialize(self, root):
+        ans = []
 
-def serialize(root):
-   
+        def dfs(node):
+            if not node:
+                ans.append('NULL')
+                return
+            ans.append(node.val)
+            dfs(node.left)
+            dfs(node.right)
 
-def deserialize(root):
-    
+        dfs(root)
+        return ans
+
+
+    def deserialize(self, data):
+        self.i = 0
+        def dfs():
+            if data[self.i] == 'NULL':
+                self.i += 1
+                return
+            node = Node(data[self.i])
+            self.i += 1
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        return dfs()
 
 
 def main():
+    c = Codec()
     node = Node('root', Node('left', Node('left.left')), Node('right'))
-    assert deserialize(serialize(node)).left.left.val == 'left.left'
+    print(
+        c.deserialize(
+            c.serialize(node)
+        ).left.left.val == 'left.left'
+    )
 
 
 if __name__ == '__main__':
